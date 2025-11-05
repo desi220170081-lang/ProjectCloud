@@ -1,0 +1,33 @@
+Konfigurasi Keamanan MFA
+Langkah 1: Aktifkan ekstensi php_zip dan OpenSSL
+  Buka file C:\xampp\php\php.ini
+  Cari ;extension=zip
+  Cari ;extension=openssl
+  Hapus tanda ; di depannya, jadi: extension=openssl
+
+Langkah 2: Install PHPMailer
+  Buka CMD dan jalankan:
+    cd C:\xampp\htdocs\
+    composer require phpmailer/phpmailer
+  Setelah instalasi selesai, pastikan file berikut muncul di proyekmu:
+    Folder vendor/
+    File composer.json
+    File composer.lock
+    File vendor/autoload.php
+  Jika belum punya Composer Download di:  https://getcomposer.org/download
+
+Langkah 3: Aktifkan App Password Gmail (2FA)
+  Aktifkan “2-Step Verification” (2FA)
+    Buka https://myaccount.google.com/security. Login dengan akun Gmail kamu.
+    Klik 2-Step Verification (Verifikasi 2 Langkah)
+    Aktifkan: Turn on 2-step Verification
+  Buka Halaman App Password: https://myaccount.google.com/apppasswords
+  Akan muncul halaman seperti ini:
+    Select App name:  Windows Computer
+  Klik tombol Generate.
+  Maka Google akan menampilkan kode 16 karakter
+  Masukkan ke config.php dengan mengganti baris:
+    define('GMAIL_USER', 'emailkamu@gmail.com'); 
+    define('GMAIL_PASS', 'abcdefghijklmnop'); // ← isi dengan App Password
+.
+
